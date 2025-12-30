@@ -1,6 +1,7 @@
 package pgdp.robot;
 
-import java.util.Random;
+import java.util.*;
+import java.util.function.Function;
 
 public class Robot {
 
@@ -19,6 +20,50 @@ public class Robot {
 
 	private String key;
 	private World.Scepter scepter;
+
+    //to dos Attributes
+    private List<Sensor<?>> sensors = new LinkedList<>();
+    private List<Memory<?>> memory = new LinkedList<>();
+    private Function<Robot, List<Command>> program = robot -> List.of();
+    private Queue<Command> todo = new LinkedList<>();
+
+
+    //to do Methods
+    public void work(){
+
+    }
+    private void sense(){
+
+    }
+    private void processSensor(Sensor<?> sensor){
+
+    }
+    private void think(){
+
+    }
+    private void act(){
+
+    }
+    public void attachSensor(Sensor<?> sensor){
+        this.sensors.add(sensor);
+        sensor.owner = this;
+    }
+    public Memory<?> createMemory(Memory<?> newMemory){
+        this.memory.add(newMemory);
+        return newMemory;
+    }
+    public void setProgram(Function<Robot, List<Command>> program){
+        this.program = program;
+    }
+    public String memoryToString(){
+        StringBuilder sb = new StringBuilder();
+        for (Memory<?> value : this.memory) {
+            sb.append(value);
+        }
+        return sb.toString();
+
+    }
+
 
 	/// Methods
 	public Robot(String name, double direction, double size, FailureSimulator failureSimulator) {
